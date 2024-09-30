@@ -20,7 +20,7 @@ y = 100
 
 # importing an image
 player_surf = pygame.image.load(join('C:\\Space shooter\\space 7 time\\code\\player.png')).convert_alpha()
-player_rect = player_surf.get_frect(center = (0,0))
+player_rect = player_surf.get_frect(center = (WINDOW_WIDTH / 2,WINDOW_HEIGHT / 2))
 
 star_surf = pygame.image.load(join('C:\\Space shooter\\space 7 time\\code\\star.png')).convert_alpha()
 star_positions = [(randint(0,WINDOW_WIDTH),randint(0,WINDOW_HEIGHT))for i in range(20)]
@@ -31,10 +31,10 @@ while running:
             running = False
 
     display_surface.fill('darkgrey')
-    display_surface.blit(player_surf, (player_rect))
     for pos in star_positions:
         display_surface.blit(star_surf, pos)
+    player_rect.left += 0.01
+    display_surface.blit(player_surf, player_rect)
     pygame.display.update()
 
 pygame.quit()
-
